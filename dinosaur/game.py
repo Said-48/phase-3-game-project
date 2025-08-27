@@ -38,7 +38,7 @@ def run_game(player_name):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                pygame.quitI()
+                pygame.quit()
                 return score
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and not is_jumping:
@@ -70,4 +70,11 @@ def run_game(player_name):
                 running = False
 
         #draw dino and the score
-        
+        screen.blit(dino_img, dino)
+        score_text = font.render(f"{player_name}: {score}", True, BLACK)
+        screen.blit(score_text, (10, 10))
+
+        pygame.display.flip()
+        clock.tick(30)
+    
+    return score
