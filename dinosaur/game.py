@@ -52,3 +52,22 @@ def run_game(player_name):
             dino.y = GROUND_HEIGHT - 50
             is_jumping = False
 
+        #spawn obstacles
+        obstacle_timer +=1
+        if obstacle_timer > spawn_delay:
+            obstacles.append(pygame.Rect(WIDTH, GROUND_HEIGHT - 40, 30, 40))
+            obstacle_timer = 0
+            spawn_delay = random.randint(60, 120)
+
+        for obstacle in obstacles[:]:
+            obstacle.x -= 30
+            pygame.draw.rect(screen, (200, 0, 0), obstacle)
+            if obstacle.x + obstacle.width < 0:
+                obstacles.remove(obstacle)
+                score += 1
+
+            if dino.colliderect(obstacle):
+                running = False
+
+        #draw dino and the score
+        
