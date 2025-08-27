@@ -44,3 +44,11 @@ def run_game(player_name):
                 if event.key == pygame.K_SPACE and not is_jumping:
                     velocity = -15
                     is_jumping = True
+
+        #dinosaur physics
+        velocity += gravity
+        dino.y += velocity
+        if dino.y >= GROUND_HEIGHT - 50:
+            dino.y = GROUND_HEIGHT - 50
+            is_jumping = False
+
