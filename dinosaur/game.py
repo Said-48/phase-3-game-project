@@ -29,3 +29,18 @@ def run_game(player_name):
 
     #score 
     score = 0
+
+    running = True
+    while running:
+        screen.fill(WHITE)
+        pygame.draw.line(screen, BLACK, (0, GROUND_HEIGHT), (WIDTH, GROUND_HEIGHT), 2)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quitI()
+                return score
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and not is_jumping:
+                    velocity = -15
+                    is_jumping = True
