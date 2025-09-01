@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 
 base = declarative_base()
 engine = create_engine("sqlite:///dino.db")
-session = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine)
 
 class Player(base):
     __tablename__ = "players"
