@@ -11,7 +11,8 @@ def main_menu():
         print("2. View Players")
         print("3. Start Game")
         print("4. Leaderboard")
-        print("5. Quit")
+        print("5. Delete Player")
+        print("6. Quit")
 
         choice = input("Enter choice: ")
 
@@ -63,6 +64,28 @@ def main_menu():
                 print(f"{rank}. {p.name} — {p.score}")
 
         elif choice == "5":
+            players = session.query(Player).all()
+            if not players:
+                print("⚠ No players available to delete.")
+                continue
+
+            print("\nSelect Player to Delete:")
+            for p in players:
+                print(f"{p.id}. {p.name}")
+
+            try:
+                player_id = int(input("Enter player ID to delete: "))
+                player = session.query(Player).get(player_id)
+                if player:
+                    session.delete(player)
+                    session.commit()
+                    print(f"Player {player.name} deleted.")
+                else:
+                    print("Invalid ID")
+            except ValueError:
+                print("Invalid input")
+
+        elif choice == "6":
             print("Goodbye")
             break
 
