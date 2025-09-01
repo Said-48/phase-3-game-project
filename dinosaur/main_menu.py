@@ -1,9 +1,10 @@
 from db import Session, Player, GameSession
-from game import run_game
 
 session = Session()
 
 def main_menu():
+    from game import run_game
+
     while True:
         print("\nDino Game ")
         print("====================")
@@ -17,8 +18,8 @@ def main_menu():
         choice = input("Enter choice: ")
 
         if choice == "1":
-            name = input("Enter player name: ")
-            if session.query(Player).filter_by(name=name):
+            name = input("Enter player name: ").strip()
+            if session.query(Player).filter_by(name=name).first():
                 print(" Player already exists!")
             else:
                 player = Player(name=name)

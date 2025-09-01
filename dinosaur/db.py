@@ -8,8 +8,8 @@ Session = sessionmaker(bind=engine)
 class Player(base):
     __tablename__ = "players"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    score = Column(Integer)
+    name = Column(String, unique=True, nullable=False)
+    score = Column(Integer, default=0)
     sessions = relationship("GameSession", backref="player")
 
 class GameSession(base):
