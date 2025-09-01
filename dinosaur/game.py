@@ -1,5 +1,7 @@
 import pygame
 import random
+from db import base, engine
+from main_menu import main_menu
 
 WIDTH, HEIGHT = 900, 500
 WHITE = (255, 255, 255)
@@ -78,3 +80,7 @@ def run_game(player_name):
         clock.tick(30)
     
     return score
+
+if __name__ == "__main__":
+    base.metadata.create_all(bind=engine)
+    main_menu()

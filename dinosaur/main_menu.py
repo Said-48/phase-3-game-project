@@ -66,7 +66,7 @@ def main_menu():
         elif choice == "5":
             players = session.query(Player).all()
             if not players:
-                print("⚠ No players available to delete.")
+                print("No players available to delete.")
                 continue
 
             print("\nSelect Player to Delete:")
